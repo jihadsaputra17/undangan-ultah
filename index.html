@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Ultah Khalid - Roblox Edition</title>
+    <title>Undangan Ultah Azzam - Roblox Edition</title>
+
+    <!-- Meta Tags agar Link terlihat bagus saat di-share di WhatsApp -->
+    <meta property="og:title" content="Undangan Ulang Tahun Azzam ke-7 🎂">
+    <meta property="og:description" content="Level 7 Unlocked! Ayo ramaikan pesta ulang tahun Azzam. Klik untuk buka undangan!">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jihadsaputra17/undangan-ultah/main/azzamroblox.png">
+    <meta property="og:type" content="website">
+
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -18,15 +25,31 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            /* Ganti 'LINK_FOTO_BACKGROUND' di bawah dengan URL Raw gambar background Anda */
-            background: linear-gradient(rgba(0, 116, 189, 0.4), rgba(0, 92, 148, 0.5)), url('https://raw.githubusercontent.com/jihadsaputra17/undangan-ultah/main/azzam1.png');
-            background-size: cover, contain;
-            background-repeat: no-repeat;
-            background-position: center, center bottom;
-            background-attachment: fixed;
             color: white;
             text-align: center;
             overflow-x: hidden;
+            background: linear-gradient(to bottom, #00C6FF, #0072FF); /* Latar belakang biru cerah modern */
+        }
+
+        /* Membuat elemen background terpisah untuk animasi fade-in */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(rgba(0, 198, 255, 0.3), rgba(0, 114, 255, 0.5)), url('https://raw.githubusercontent.com/jihadsaputra17/undangan-ultah/main/azzam1.png');
+            background-size: cover, contain;
+            background-repeat: no-repeat;
+            background-position: center, center bottom;
+            opacity: 0; /* Mulai dari transparan */
+            animation: fadeInBackground 3s ease-in-out forwards; /* Muncul perlahan dalam 3 detik */
+        }
+
+        @keyframes fadeInBackground {
+            to { opacity: 1; }
         }
 
         .container {
@@ -52,6 +75,20 @@
             color: var(--roblox-grey);
         }
 
+        /* Animasi Disco untuk LEVEL 7 UNLOCKED! */
+        @keyframes disco-lights {
+            0% { color: #FF0000; } /* Merah */
+            25% { color: #00FF00; } /* Hijau */
+            50% { color: #0000FF; } /* Biru */
+            75% { color: #FFFF00; } /* Kuning */
+            100% { color: #FF00FF; } /* Magenta */
+        }
+
+        .subtitle.disco {
+            animation: disco-lights 2s infinite alternate; /* Berulang, bolak-balik */
+            text-shadow: 3px 3px 0px #000000; /* Bayangan hitam tegas agar teks menonjol */
+        }
+
         .card {
             background: rgba(255, 255, 255, 0.95);
             border: 6px solid white;
@@ -60,6 +97,29 @@
             border-radius: 15px;
             box-shadow: 0px 10px 0px rgba(0,0,0,0.2);
             color: #333;
+        }
+
+        #countdown-timer {
+            font-family: 'Bungee', cursive;
+            font-size: 1rem; /* Ukuran font angka diperkecil */
+            color: var(--roblox-dark);
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed var(--roblox-grey);
+        }
+
+        /* Style untuk label 'HARI', 'JAM', dll. */
+        #countdown-timer small {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.6rem;
+        }
+
+        .countdown-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--roblox-dark);
+            margin-bottom: -5px; /* Mengurangi jarak ke countdown */
         }
 
         .btn-play {
@@ -79,6 +139,26 @@
             margin-top: 23px;
             border-bottom: 2px solid #008453;
         }
+
+        /* Tombol Tambahan (Maps & Kalender) */
+        .btn-action {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 15px;
+            background-color: var(--roblox-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-bottom: 4px solid #0074BD;
+            transition: 0.2s;
+        }
+        .btn-action:active {
+            transform: translateY(2px);
+            border-bottom: 2px solid #0074BD;
+        }
+        .btn-action.maps { background-color: #FF9900; border-bottom-color: #CC7A00; }
 
         .event-info {
             font-weight: bold;
@@ -119,6 +199,12 @@
             margin: 10px auto 20px auto;
             border-radius: 10px;
             display: block;
+            cursor: pointer; /* Menunjukkan bisa diklik */
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
         }
 
         @keyframes float {
@@ -142,15 +228,320 @@
         #open-btn {
             animation: pulse 1.5s infinite;
         }
+
+        /* Animasi Mengetik untuk Nama */
+        @keyframes typing-name {
+            from { width: 0; }
+            to { width: 24ch; } /* Lebar kira-kira sesuai panjang nama */
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--roblox-red); }
+        }
+
+        #nama-azzam {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 4px solid var(--roblox-red); /* Kursor ketik */
+            width: 0; /* Awalnya 0 agar tidak terlihat sebelum animasi */
+            vertical-align: bottom;
+        }
+
+        .start-typing {
+            animation: typing-name 3.5s steps(30, end) forwards, blink-caret .75s step-end infinite;
+        }
+
+        @media (max-width: 600px) {
+            #nama-azzam {
+                font-size: 1.2rem; /* Perkecil font agar muat satu baris di HP */
+            }
+        }
+
+        /* Matahari Bersinar */
+        #sun {
+            position: fixed;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 40px #FFD700, 0 0 80px #FFA500;
+            z-index: -3; /* Di belakang awan */
+            animation: sunPulse 4s infinite alternate;
+        }
+
+        @keyframes sunPulse {
+            from { transform: scale(1); box-shadow: 0 0 40px #FFD700, 0 0 80px #FFA500; }
+            to { transform: scale(1.1); box-shadow: 0 0 60px #FFD700, 0 0 100px #FFA500; }
+        }
+
+        /* Pelangi Tipis */
+        #rainbow {
+            position: fixed;
+            bottom: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150vw;
+            height: 100vh;
+            background: radial-gradient(
+                circle at 50% 100%,
+                transparent 50%,
+                rgba(255, 0, 0, 0.1) 50.5%,
+                rgba(255, 165, 0, 0.1) 51.5%,
+                rgba(255, 255, 0, 0.1) 52.5%,
+                rgba(0, 128, 0, 0.1) 53.5%,
+                rgba(0, 0, 255, 0.1) 54.5%,
+                rgba(75, 0, 130, 0.1) 55.5%,
+                rgba(238, 130, 238, 0.1) 56.5%,
+                transparent 57.5%
+            );
+            z-index: -3; /* Di belakang awan */
+            pointer-events: none;
+            filter: blur(8px); /* Efek blur agar terlihat halus/tipis */
+            opacity: 0.7;
+        }
+
+        /* Animasi Awan Bergerak */
+        #cloud-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* Di belakang karakter dan konten */
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .cloud {
+            width: 200px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 200px;
+            position: absolute;
+        }
+
+        .cloud:before, .cloud:after {
+            content: '';
+            position: absolute;
+            background: inherit;
+            width: 100px;
+            height: 80px;
+            top: -15px;
+            left: 10px;
+            border-radius: 100px;
+            transform: rotate(30deg);
+        }
+
+        .cloud:after {
+            width: 120px;
+            height: 120px;
+            top: -55px;
+            left: auto;
+            right: 15px;
+        }
+
+        @keyframes moveClouds {
+            0% { left: -300px; }
+            100% { left: 110%; }
+        }
+
+        /* Animasi Burung Terbang */
+        .bird {
+            position: fixed;
+            z-index: -1; /* Di depan awan/matahari, di belakang konten */
+            width: 40px;
+            height: 20px;
+            left: -100px; /* Mulai dari luar layar */
+            pointer-events: none;
+            /* Menggunakan properti 'left' untuk animasi agar tidak konflik dengan transform: scale() */
+            animation: fly-across 20s linear infinite;
+        }
+
+        .bird-wing {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top: 0;
+            border-top: 3px solid #333;
+            border-radius: 50% 50% 0 0 / 60% 60% 0 0; /* Lengkungan sayap lebih natural */
+        }
+
+        .bird-wing.left {
+            left: 0;
+            transform-origin: right bottom;
+            animation: wing-flap-left 0.6s infinite ease-in-out alternate;
+        }
+
+        .bird-wing.right {
+            right: 0;
+            transform-origin: left bottom;
+            animation: wing-flap-right 0.6s infinite ease-in-out alternate;
+        }
+
+        @keyframes wing-flap-left {
+            0% { transform: rotate(10deg); }
+            100% { transform: rotate(-30deg); }
+        }
+
+        @keyframes wing-flap-right {
+            0% { transform: rotate(-10deg); }
+            100% { transform: rotate(30deg); }
+        }
+
+        @keyframes fly-across {
+            0% { left: -10%; }
+            100% { left: 110%; }
+        }
+
+        /* Animasi Pesawat dengan Spanduk */
+        .airplane-container {
+            position: fixed;
+            top: 12%; /* Atur ketinggian terbang pesawat */
+            z-index: -1;
+            pointer-events: none;
+            animation: fly-plane 25s linear infinite;
+            animation-delay: -5s; /* Mulai setelah beberapa detik */
+        }
+
+        .airplane {
+            width: 70px;
+            height: 25px;
+            background: #f1f1f1;
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            border-bottom: 5px solid #aaa;
+        }
+        .airplane::before { /* Sayap */
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 40px;
+            background: #ccc;
+            left: 30px;
+            top: -10px;
+            border-radius: 5px;
+        }
+
+        .banner {
+            position: absolute;
+            left: -260px; /* Posisi spanduk di belakang pesawat */
+            top: 8px;
+            width: 250px;
+            height: 35px;
+            background: white;
+            border: 2px solid var(--roblox-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bungee', cursive;
+            color: var(--roblox-red);
+            font-size: 0.9rem;
+        }
+
+        @keyframes fly-plane {
+            from { transform: translateX(-30vw) scale(0.7); }
+            to { transform: translateX(130vw) scale(0.7); }
+        }
+
+        /* Style untuk Modal Zoom Foto */
+        #image-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 10001; /* Di atas segalanya */
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9); 
+            align-items: center; 
+            justify-content: center;
+            animation: fadeInModal 0.3s;
+        }
+
+        @keyframes fadeInModal {
+            from {opacity: 0} 
+            to {opacity: 1}
+        }
+
+        .modal-content {
+            margin: auto; 
+            display: block; 
+            width: 80%; 
+            max-width: 500px;
+            border-radius: 10px; 
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from {transform: scale(0.1)} 
+            to {transform: scale(1)}
+        }
+
+        #close-modal {
+            position: absolute; 
+            top: 20px; 
+            right: 35px; 
+            color: #f1f1f1; 
+            font-size: 40px; 
+            font-weight: bold; 
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #close-modal:hover {
+            color: var(--roblox-red);
+        }
     </style>
 </head>
 <body>
 
     <!-- Overlay / Cover Undangan -->
-    <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #0074BD 0%, #005C94 100%); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transition: opacity 0.5s; cursor: pointer;">
+    <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #00A2FF, #0074BD); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transition: opacity 0.5s; cursor: pointer;">
         <h1 style="color: var(--roblox-red); font-family: 'Bungee'; font-size: 2rem; margin-bottom: 20px; text-shadow: 2px 2px 0 white;">UNDANGAN AZZAM</h1>
         <p style="margin-bottom: 30px; font-weight: bold;">Ketuk layar di mana saja untuk membuka</p>
         <button id="open-btn" class="btn-play" style="border: none; cursor: pointer; margin-top: 0;">BUKA UNDANGAN 📩</button>
+    </div>
+
+    <!-- Matahari -->
+    <div id="sun"></div>
+
+    <!-- Pelangi -->
+    <div id="rainbow"></div>
+
+    <!-- Container Awan -->
+    <div id="cloud-container">
+        <div class="cloud" style="top: 10%; animation: moveClouds 35s linear infinite; transform: scale(0.6); opacity: 0.6;"></div>
+        <div class="cloud" style="top: 25%; animation: moveClouds 28s linear infinite; transform: scale(0.8); opacity: 0.8; animation-delay: -5s;"></div>
+        <div class="cloud" style="top: 5%; animation: moveClouds 45s linear infinite; transform: scale(0.4); opacity: 0.5; animation-delay: -15s;"></div>
+    </div>
+
+    <!-- Burung Terbang -->
+    <div class="bird" style="top: 15%; animation-duration: 18s; transform: scale(0.7);">
+        <div class="bird-wing left"></div>
+        <div class="bird-wing right"></div>
+    </div>
+    <div class="bird" style="top: 35%; animation-duration: 28s; transform: scale(0.5); animation-delay: -10s;">
+        <div class="bird-wing left"></div>
+        <div class="bird-wing right"></div>
+    </div>
+
+    <!-- Pesawat dengan Spanduk -->
+    <div class="airplane-container">
+        <div class="banner">HAPPY BIRTHDAY AZZAM!</div>
+        <div class="airplane"></div>
+    </div>
+
+    <!-- Modal untuk Zoom Foto -->
+    <div id="image-modal">
+        <span id="close-modal">&times;</span>
+        <img class="modal-content" id="modal-img">
     </div>
 
     <div class="container">
@@ -159,8 +550,8 @@
         
         <img src="https://raw.githubusercontent.com/jihadsaputra17/undangan-ultah/main/azzamroblox.png" alt="Khalid" class="profile-pic">
 
-        <h1>MUHAMMAD KHALID AZZAM</h1>
-        <p class="subtitle" style="color: white; font-weight: bold;">LEVEL 7 UNLOCKED!</p>
+        <h1 id="nama-azzam">MUHAMMAD KHALID AZZAM</h1>
+        <p class="subtitle disco" style="color: white; font-weight: bold;">LEVEL 7 UNLOCKED!</p>
 
         <div class="card">
             <p class="event-info">📅 Sabtu, 14 Maret 2026</p>
@@ -168,6 +559,15 @@
             <hr style="border-color: #ddd;">
             <p>🕒 17.00 - 18.30: Perayaan Ultah 🎂</p>
             <p>🕒 18.30 - Selesai: Buka Bersama Keluarga 🍲</p>
+            
+            <!-- Tombol Navigasi & Kalender -->
+            <div style="margin-top: 15px; margin-bottom: 10px;">
+                <a href="https://www.google.com/maps/search/?api=1&query=Jl.+Tanjungpura+RT.25+NO.05" target="_blank" class="btn-action maps">🗺️ Lihat Lokasi</a>
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ulang+Tahun+Azzam+ke-7&dates=20260314T170000/20260314T200000&details=Datang+dan+ramaikan+acara+ulang+tahun+Azzam!&location=Jl.+Tanjungpura+RT.25+NO.05" target="_blank" class="btn-action">📅 Simpan Tanggal</a>
+            </div>
+
+            <p class="countdown-title">Waktu Tersisa Menuju Acara</p>
+            <div id="countdown-timer">Memuat...</div>
         </div>
 
     </div>
@@ -177,6 +577,9 @@
         <!-- GANTI DENGAN LINK FILE MUSIK ANDA (misal: .mp3) -->
         <source src="https://raw.githubusercontent.com/jihadsaputra17/undangan-ultah/main/music.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- Library Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
         // Membuat animasi kotak-kotak terbang ala Roblox
@@ -198,7 +601,75 @@
             
             const music = document.getElementById('background-music');
             music.play().catch(error => console.log("Playback failed: " + error));
+
+            // Logika Hitung Mundur
+            const countdownElement = document.getElementById('countdown-timer');
+            const eventDate = new Date("March 14, 2026 17:00:00").getTime();
+
+            const countdownInterval = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = eventDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.innerHTML = "ACARA TELAH DIMULAI!";
+                } else {
+                    countdownElement.innerHTML = `${days} <small>HARI</small> ${hours} <small>JAM</small> ${minutes} <small>MENIT</small> ${seconds} <small>DETIK</small>`;
+                }
+            }, 1000);
+
+            // Fungsi untuk menjalankan animasi mengetik dan confetti secara berulang
+            function runAnimationLoop() {
+                const nama = document.getElementById('nama-azzam');
+                
+                // Reset animasi: hapus class, trigger reflow, tambah class lagi
+                nama.classList.remove('start-typing');
+                void nama.offsetWidth; 
+                nama.classList.add('start-typing');
+
+                // Efek Confetti meledak setelah nama selesai diketik (3.5 detik)
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 150,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#E2231A', '#00A2FF', '#FFFFFF', '#FFD700'] // Warna tema Roblox
+                    });
+                }, 3500);
+            }
+
+            // Jalankan animasi pertama kali
+            runAnimationLoop();
+
+            // Ulangi animasi setiap 8 detik (3.5s mengetik + 4.5s jeda baca)
+            setInterval(runAnimationLoop, 8000);
         });
+
+        // Logika Zoom Foto Profil
+        const modal = document.getElementById("image-modal");
+        const img = document.querySelector(".profile-pic");
+        const modalImg = document.getElementById("modal-img");
+        const span = document.getElementById("close-modal");
+
+        img.onclick = function(){
+          modal.style.display = "flex";
+          modalImg.src = this.src;
+        }
+
+        span.onclick = function() { 
+          modal.style.display = "none";
+        }
+
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
