@@ -128,6 +128,13 @@
 </head>
 <body>
 
+    <!-- Overlay / Cover Undangan -->
+    <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #0074BD 0%, #005C94 100%); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transition: opacity 0.5s;">
+        <h1 style="color: var(--roblox-red); font-family: 'Bungee'; font-size: 2rem; margin-bottom: 20px; text-shadow: 2px 2px 0 white;">UNDANGAN KHALID</h1>
+        <p style="margin-bottom: 30px; font-weight: bold;">Klik tombol di bawah untuk membuka</p>
+        <button id="open-btn" class="btn-play" style="border: none; cursor: pointer; margin-top: 0;">BUKA UNDANGAN 📩</button>
+    </div>
+
     <div class="container">
         <div class="header-banner">JOIN THE GAME!</div>
         <div class="ramadan-tag">🌙 Ramadan Kareem</div>
@@ -169,14 +176,13 @@
         }
         setInterval(createBalloon, 500);
 
-        // Memainkan musik setelah interaksi pertama dari pengguna
-        // untuk mengatasi kebijakan browser yang memblokir autoplay.
-        document.body.addEventListener('click', function playMusic() {
+        // Logika untuk membuka undangan dan memutar musik
+        document.getElementById('open-btn').addEventListener('click', function() {
+            document.getElementById('overlay').style.opacity = '0';
+            setTimeout(() => { document.getElementById('overlay').style.display = 'none'; }, 500);
+            
             const music = document.getElementById('background-music');
-            music.play();
-            // Hapus event listener setelah musik berhasil diputar
-            // agar tidak mencoba memutar ulang setiap kali diklik.
-            document.body.removeEventListener('click', playMusic);
+            music.play().catch(error => console.log("Playback failed: " + error));
         });
     </script>
 </body>
