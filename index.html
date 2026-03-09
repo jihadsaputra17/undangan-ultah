@@ -150,6 +150,12 @@
         <a href="https://wa.me/628123456789?text=Halo!+Saya+akan+hadir+di+acara+Khalid" class="btn-play">PLAY / RSVP</a>
     </div>
 
+    <!-- Elemen Audio untuk Musik Latar -->
+    <audio id="background-music" loop>
+        <!-- GANTI DENGAN LINK FILE MUSIK ANDA (misal: .mp3) -->
+        <source src="[GANTI_DENGAN_LINK_MUSIK_ANDA]" type="audio/mpeg">
+    </audio>
+
     <script>
         // Membuat animasi kotak-kotak terbang ala Roblox
         function createBalloon() {
@@ -162,6 +168,16 @@
             setTimeout(() => b.remove(), 6000);
         }
         setInterval(createBalloon, 500);
+
+        // Memainkan musik setelah interaksi pertama dari pengguna
+        // untuk mengatasi kebijakan browser yang memblokir autoplay.
+        document.body.addEventListener('click', function playMusic() {
+            const music = document.getElementById('background-music');
+            music.play();
+            // Hapus event listener setelah musik berhasil diputar
+            // agar tidak mencoba memutar ulang setiap kali diklik.
+            document.body.removeEventListener('click', playMusic);
+        });
     </script>
 </body>
 </html>
