@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Ultah Khalid - Roblox Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --roblox-red: #E2231A;
+            --roblox-blue: #00A2FF;
+            --roblox-dark: #232527;
+            --roblox-light: #FFFFFF;
+            --roblox-grey: #ADB5BD;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle, #0074BD 0%, #005C94 100%);
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            font-family: 'Bungee', cursive;
+            color: var(--roblox-red);
+            font-size: 2.5rem;
+            margin-bottom: 0;
+            text-shadow: 3px 3px 0px white;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: var(--roblox-grey);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 6px solid white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0px 10px 0px rgba(0,0,0,0.2);
+            color: #333;
+        }
+
+        .btn-play {
+            background-color: #00B06F; /* Roblox Play Button Green */
+            color: white;
+            padding: 15px 40px;
+            font-family: 'Bungee', cursive;
+            font-size: 1.5rem;
+            text-decoration: none;
+            display: inline-block;
+            border-bottom: 5px solid #008453;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+
+        .btn-play:active {
+            margin-top: 23px;
+            border-bottom: 2px solid #008453;
+        }
+
+        .event-info {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--roblox-dark);
+        }
+
+        .ramadan-tag {
+            background: #FFD700;
+            color: black;
+            padding: 8px 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Simple Balloon Animation */
+        .balloon {
+            position: fixed;
+            bottom: -100px;
+            width: 30px;
+            height: 40px;
+            background: var(--roblox-red);
+            border-radius: 5px; /* Blocky balloon */
+            opacity: 0.7;
+            animation: float 5s infinite ease-in;
+            z-index: -1;
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+            margin: 10px auto 20px auto;
+            border-radius: 10px;
+            display: block;
+        }
+
+        @keyframes float {
+            to { transform: translateY(-110vh) rotate(360deg); }
+        }
+
+        .header-banner {
+            background: var(--roblox-red);
+            padding: 10px;
+            font-family: 'Bungee';
+            transform: rotate(-2deg);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-banner">JOIN THE GAME!</div>
+        <div class="ramadan-tag">🌙 Ramadan Kareem</div>
+        
+        <!-- Ganti 'foto-khalid.jpg' dengan file foto kamu -->
+        <img src="C:\Users\saput\Downloads\azzamroblox.png" alt="Khalid" class="profile-pic">
+
+        <h1>MUHAMMAD KHALID AZZAM</h1>
+        <p class="subtitle" style="color: white; font-weight: bold;">LEVEL 7 UNLOCKED!</p>
+
+        <div class="card">
+            <p class="event-info">📅 Sabtu, 14 Maret 2026</p>
+            <p>📍 Lokasi: [Masukkan Alamat Kamu di Sini]</p>
+            <hr style="border-color: #ddd;">
+            <p>🕒 17.00 - 18.30: Perayaan Ultah 🎂</p>
+            <p>🕒 18.30 - Selesai: Buka Bersama Keluarga 🍲</p>
+        </div>
+
+        <p>Acara khusus keluarga terdekat.</p>
+        
+        <a href="https://wa.me/628123456789?text=Halo!+Saya+akan+hadir+di+acara+Khalid" class="btn-play">PLAY / RSVP</a>
+    </div>
+
+    <script>
+        // Membuat animasi kotak-kotak terbang ala Roblox
+        function createBalloon() {
+            const b = document.createElement('div');
+            b.className = 'balloon';
+            b.style.left = Math.random() * 100 + 'vw';
+            b.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            b.style.backgroundColor = ['#E2231A', '#00A2FF', '#FFFFFF', '#FFD700'][Math.floor(Math.random()*4)];
+            document.body.appendChild(b);
+            setTimeout(() => b.remove(), 6000);
+        }
+        setInterval(createBalloon, 500);
+    </script>
+</body>
+</html>
